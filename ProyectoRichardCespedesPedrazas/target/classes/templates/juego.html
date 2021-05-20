@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Juego</title>
+    <link rel="stylesheet" th:href="@{../css/estilos.css}" /> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+  <header>
+    <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg  ">
+      <a class="navbar-brand" href="#"><div class="logo2"><img th:src="@{https://i.ibb.co/JmBMR7r/logo.png}" style="width: 50px;"></div></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active" >
+            <a class="nav-link" th:href="@{/}">Tienda<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}">Ofertas</a>
+          </li>
+          <li>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categorias
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              	<th:block th:each="categoria : ${categorias}">
+                 <a class="dropdown-item"th:href="@{/Juego/Categoria/{id}(id=${categoria.idCategoria})}" th:text="${categoria.nombre}"></a>
+                </th:block>
+              </div>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}">Novedades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/Form}">Añadir</a>
+          </li> 
+        </ul>
+        <form class="form-inline ">
+          <input class="form-control " type="search" placeholder="Buscar..."  >
+          <button class="btn btn-outline-info ml-2"  type="submit">Buscar</button>
+        </form>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/Form}">Iniciar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    </header>  
+  <main>
+  <div class="mt-5 pt-5 container-fluid row mr-0 pr-0 " data-aos="flip-right">
+    <div class="col-12 col-lg-4 my-3 mr-0 pr-0 ">
+      <div class="card shadow-sm mr-0 pr-0">
+          <img th:src="${not (#strings.isEmpty(juego.imagen1))} 
+								              ? ${juego.imagen1} : 'http://placehold.it/48x48'"
+								class="img-responsive icono-categoria" alt="imagen1" />
+      </div>
+    </div>
+    <div class="col-12 col-lg-8 my-3 mr-0 pr-0">
+      <div class="card shadow-sm p-2 mr-0">
+      	  <h2 class="p-5" th:text="${juego.nombre}">nombre</h2>
+          <p class="separador2 px-5" id="descrip" th:text="${juego.descripcion}">descripcion</p>
+          <p  th:text="${juego.categoria}" class="sep4 px-5">categoria</p>
+          <p class="px-5" id="prec"><span id="prec" th:text="${juego.precio}">precio</span> €</p>
+          <p class="px-5" id="prec" th:text="${juego.descuento}">Descuento</p>
+          <p th:text="${juego.fecha}">Fecha limite</p>
+          <p th:text="${juego.fechaAlta}">Fecha limite</p>
+          <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary m-2"><a th:href="@{/eliminar/{id}(id=${juego.id})}">Eliminar</a></button>
+              <button type="button" class="btn btn-sm btn-outline-secondary m-2" ><a th:href="@{/editar/{id}(id=${juego.id})}">Editar</a></button>
+              <button type="button" class="btn btn-sm btn-outline-secondary m-2">Añadir al carrito</button>
+            </div>
+      </div>
+    </div>
+  </div>
+    <div class="row mr-0 pr-0" data-aos="zoom-in">
+        <div id="demo" class="carousel slide my-5 col 12 col-lg-12 mr-0 pr-0" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active mr-0 pr-0">
+      <img th:src="${not (#strings.isEmpty(juego.imagen2))} 
+								              ? ${juego.imagen2} : 'http://placehold.it/48x48'"
+								class="img-responsive icono-categoria"  alt="Imagen 1" width="100%" >
+    </div>
+    <div class="carousel-item mr-0 pr-0">
+      <img th:src="${not (#strings.isEmpty(juego.imagen3))} 
+								              ? ${juego.imagen3} : 'http://placehold.it/48x48'"
+								class="img-responsive icono-categoria" alt="Imagen 2" width="100%">
+    </div>
+    <div class="carousel-item mr-0 pr-0">
+      <img th:src="${not (#strings.isEmpty(juego.imagen4))} 
+								              ? ${juego.imagen4} : 'http://placehold.it/48x48'"
+								class="img-responsive icono-categoria" alt="Imagen 3" width="100%">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+  </div>
+ </div>
+
+  </main>
+    <script> AOS.init();</script>
+      <footer class="text-white text-center bg-dark ">
+        <div class="container">
+            <div class="row">
+              <p>© 2021, Games Store, Inc. Todos los derechos reservados. Games Store, el logotipo de Games Store, son marcas comerciales o marcas registradas de Games Stores, Inc. tanto en Estados Unidos de América como en el resto del mundo. Otras marcas o nombres de productos son marcas comerciales de sus respectivos propietarios. Las transacciones fuera de EE. UU. se realizan a través de Games Store International, S.à r.l.   </p>
+                <div class="col-4 col-lg-4 footer-col">
+                    <ul class="list-inline text-left">
+                      <li>Política de Privacidad</li>
+                      <li>Términos de Uso</li>
+                    </ul>
+                </div>
+                <div class="col-4 col-lg-4 footer-col">
+                  <ul class="list-inline text-center">
+                    <li>Games Store</li>
+                    <li> © 2019-2020 Games</li>
+                  </ul>
+              </div>
+                <div class="col-4 col-lg-4 footer-col">
+                  <ul class="list-inline text-right">
+                    <li>Política de cookies</li>
+                    <li>Preferencias de cookies</li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+     </footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+.card-body{
+  width: 275px;
+  height: 280px;
+}
+.card img{
+  width: 100%;
+  height: 100%;
+}
+
+footer p{
+  font-size: 10pt;
+}
+
+.row{
+  padding: 0px;
+  margin: 0px;
+}
+.col-lg-3{
+  padding: 0px;
+}
+.carousel-item {
+ width: 100%;	
+}
+.row{
+	padding-right: 0px;
+	margin-right: 0px;
+}
+#descrip{
+	font-size: 15pt;
+}
+#prec{
+	font-size: 20pt;
+	font-family: arial;
+	text-align: right;
+	color:black;
+}
+.sep4{
+	font-size: 16pt;
+	font-family: arial;
+	text-align: right;
+	color:grey;
+}
+
+.separador2{
+    display: block;
+    height: 100%;
+    width: 100%;
+   }
+.separador3{
+    height: 30%;
+    width: 100%;
+    font-size: 15pt;
+    }
+#sep5{
+	font-size: 10pt;
+	font-family: arial;
+	color:grey;
+}
+
+
+
+ 
+

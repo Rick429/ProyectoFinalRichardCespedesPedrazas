@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Index</title>
+	<link rel="stylesheet" th:href="@{css/estilos.css}" /> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+ 	
+    
+</head>
+  <header>
+    <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg  ">
+      <a class="navbar-brand" href="#"><div class="logo2"><img th:src="@{images/logo.png}" style="width: 50px;"></div></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active" >
+            <a class="nav-link" th:href="@{/}">Tienda<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}">Ofertas</a>
+          </li>
+          <li>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categorias
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              	<th:block th:each="categoria : ${categorias}">
+                 <a class="dropdown-item"th:href="@{/Juego/Categoria/{id}(id=${categoria.idCategoria})}" th:text="${categoria.nombre}"></a>
+                </th:block>
+              </div>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}">Novedades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/Form}">Añadir</a>
+          </li> 
+        </ul>
+        <form class="form-inline ">
+          <input class="form-control " type="search" placeholder="Buscar..."  >
+          <button class="btn btn-outline-info ml-2"  type="submit">Buscar</button>
+        </form>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/Form}">Iniciar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>  
+  <main class="mt-4 container-fluid">
+    <aside class="row">
+      <div class="col-12 col-lg-12" data-aos="flip-right">
+        <div id="demo" class="carousel slide my-5" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img th:src="${not (#strings.isEmpty(imagen4))} ? ${imagen4} :
+       'https://compass-ssl.xbox.com/assets/d7/29/d7299dda-c153-4b60-9040-a6266b22ffd6.jpg?n=Assassins-Creed-Valhalla_GLP-Page-Hero-0_NCSA_1083x609_02.jpg'" width="100%" alt="novedad1">
+
+    </div>
+    <div class="carousel-item">
+      <img th:src="${not (#strings.isEmpty(imagen4))} ? ${imagen4} : 
+      'https://www.comunidadxbox.com/wp-content/uploads/2020/11/Watch-Dogs-Legion-oj8f22e8vh71wpmjw6dw9w5ivriilk45k56z6lqkbi.jpg'" width="100%" alt="novedad2">
+    </div>
+    <div class="carousel-item">
+      <img th:src="${not (#strings.isEmpty(imagen4))} ? ${imagen4} : 
+      'https://www.gameprotv.com/archivos/202009/scott-pilgrim-vs.-the-world-the-game-complete-edition-principal.jpg'" width="100%" alt="novedad3">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+ </div>
+</div>
+</aside>
+   <div class="row">
+    <div th:each="juego : ${juegos}" class="col-12 col-lg-3 my-3" data-aos="fade-up">
+      <div class="card shadow-sm separador2">
+       <img th:src="${not (#strings.isEmpty(juego.imagen1))} 
+								              ? ${juego.imagen1} : 'http://placehold.it/48x48'"
+								class="img-responsive icono-categoria" alt="imagen" />
+        <div class="card-body separador2">
+          <h3 class="separador3" th:text="${juego.nombre}">nombre</h3>
+          <p id="sep5" th:text="${juego.edicion}">edicion</p>
+          <p id="prec"><span id="prec" th:text="${juego.precio}">precio</span> €</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group pb-4 separador3">
+              <button type="button" class="link btn btn-sm btn-outline-secondary"><a th:href="@{/Juego/{id}(id=${juego.id})}">Ver más</a></button>
+              <button type="button" class="btn btn-sm btn-outline-secondary"><a th:href="@{/editar/{id}(id=${juego.id})}">Editar</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </main>
+  <script> AOS.init();</script>
+      <footer class="text-white text-center bg-dark ">
+        <div class="container">
+            <div class="row">
+              <p>© 2021, Games Store, Inc. Todos los derechos reservados. Games Store, el logotipo de Games Store, son marcas comerciales o marcas registradas de Games Stores, Inc. tanto en Estados Unidos de América como en el resto del mundo. Otras marcas o nombres de productos son marcas comerciales de sus respectivos propietarios. Las transacciones fuera de EE. UU. se realizan a través de Games Store International, S.à r.l.   </p>
+                <div class="col-4 col-lg-4 footer-col">
+                    <ul class="list-inline text-left">
+                      <li>Política de Privacidad</li>
+                      <li>Términos de Uso</li>
+                    </ul>
+                </div>
+                <div class="col-4 col-lg-4 footer-col">
+                  <ul class="list-inline text-center">
+                    <li>Games Store</li>
+                    <li> © 2019-2020 Games</li>
+                  </ul>
+              </div>
+                <div class="col-4 col-lg-4 footer-col">
+                  <ul class="list-inline text-right">
+                    <li>Política de cookies</li>
+                    <li>Preferencias de cookies</li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+      </footer>
+        
+  
+</body>
+</html>
