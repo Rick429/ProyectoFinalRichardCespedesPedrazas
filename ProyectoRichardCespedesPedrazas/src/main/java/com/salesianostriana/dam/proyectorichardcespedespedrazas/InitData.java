@@ -21,14 +21,15 @@ public class InitData {
 
 	public void run() {
 		
-		String[] categorias = new String[] { "Acción", "Aventura", "FPS", "Deporte", "Casual", "Estrategia", "Shooter" };
+		String[] categorias = new String[] { "Acción", "Aventura", "FPS", "Deporte", "Casual", "Estrategia", "Shooter", "Simulación"};
 
 		for(String categoria : categorias) {
 			categoriaRepository.save(new Categoria(categoria));
 		}
 		
-		
-		LocalDate fecha = LocalDate.now();
+		int cinco = 5;
+		LocalDate fecha = LocalDate.now().plusDays(cinco);
+		LocalDate fechaD = LocalDate.now();
 		Juego j1 = new Juego("ASSASIN’S CREED VALHALLA",
 				"Ponte en la piel de Eivor, una leyenda vikinga en busca de gloria. Explora la Inglaterra de los años oscuros mientras saqueas a tus enemigos, haces prosperar tu asentamiento y consolidas tu poder político.\r\n"
 						+ "• Dirige épicos saqueos vikingos contra fortalezas y tropas sajonas.\r\n"
@@ -40,7 +41,7 @@ public class InitData {
 				"Standard Edition", "https://i.ibb.co/zHr3DxR/Assasins-Valhalla.jpg",
 				"https://i.ibb.co/941kRNr/Assasins-Valhalla1.jpg", "https://i.ibb.co/3TNj1D7/Assasins-Valhalla2.jpg",
 				"https://i.ibb.co/JqRPqVL/Assasins-Valhalla3.jpg", "https://i.ibb.co/kyMM5xv/Assasins-Valhalla4.jpg",
-				59.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Aventura"), fecha);
+				59.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Aventura"), fecha);
 
 		Juego j2 = new Juego("Scott Pilgrim vs. The World: The Game",
 				"¡Redescubre el querido beat 'em up arcade en 2D inspirado en los emblemáticos cómics y la película de Scott Pilgrim contra el mundo en esta Complete Edition!\r\n"
@@ -52,14 +53,14 @@ public class InitData {
 						+ "¡Forma equipo con amigos y combinad vuestras habilidades para luchar contra las oleadas de enemigos, o compite contra ellos en minijuegos como el de balón prisionero, mientras derrotas a la Liga de los Malvados Ex de Ramona!",
 				"Complete Edition", "https://i.ibb.co/PYPRWx9/scott.jpg", "https://i.ibb.co/CmKVq9K/scott1.jpg",
 				"https://i.ibb.co/0CYfpdK/scott2.jpg", "https://i.ibb.co/PhRLHr7/scott3.jpg",
-				"https://i.ibb.co/2cPY07b/scott4.jpg", 14.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Aventura") , fecha);
+				"https://i.ibb.co/2cPY07b/scott4.jpg", 14.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Aventura") , fecha);
 
 		Juego j3 = new Juego("Watch Dogs: Legion",
 				"Forma una resistencia con prácticamente cualquiera que te encuentres, mientras hackeas, te infiltras y luchas para salvar a Londres de la debacle en un futuro próximo.",
 				"GOLD EDITION", "https://i.ibb.co/PFNPnHN/Watch-Dogs-Legion.jpg",
 				"https://i.ibb.co/CnV7qKx/Watch-Dogs-Legion1.jpg", "https://i.ibb.co/5M5m2c0/Watch-Dogs-Legion2.jpg",
 				"https://i.ibb.co/T1n9FRK/Watch-Dogs-Legion3.jpg", "https://i.ibb.co/VxGhvLt/Watch-Dogs-Legion4.jpg",
-				99.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Acción") , fecha);
+				99.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Acción") , fecha);
 
 		Juego j4 = new Juego("Tom Clancy's Rainbow Six Siege",
 				"Sumérgete en un explosivo juego 5v5, alta competición y emocionantes enfrentamientos de equipos PvP, de forma individual o con amigos. Tom Clancy's Rainbow Six® Siege es una experiencia en constante expansión con oportunidades sin fin para perfeccionar tu estrategia y llevar a tu equipo a la victoria.\r\n"
@@ -70,7 +71,7 @@ public class InitData {
 				"DELUXE EDITION", "https://i.ibb.co/YXv3k41/Tom-Clancys-Six.webp",
 				"https://i.ibb.co/BwhW4hK/Tom-Clancys-Six1.webp", "https://i.ibb.co/SsrXVk8/Tom-Clancys-Six2.webp",
 				"https://i.ibb.co/41yJ11F/Tom-Clancys-Six3.webp", "https://i.ibb.co/WFqmK4t/Tom-Clancys-Six4.jpg",
-				29.99, 0, true, fecha, categoriaRepository.findFirstByNombre("FPS") , fecha);
+				29.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("FPS") , fecha);
 		Juego j5 = new Juego("Assassin's Creed Odyssey",
 				"Escribe tu propia odisea legendaria y vive aventuras épicas en un mundo donde cada decisión importa.  Tu familia te ha condenado a muerte y debes embarcarte en un viaje fascinante que te convertirá de simple mercenario a héroe griego legendario, mientras descubres la verdad sobre tu pasado. Sigue tu propio camino en este mundo forjado por Dioses y mortales y azotado por la guerra, allá donde el mar rompe contra las montañas. Conoce a personajes históricos de la antigua Grecia e interactúa con ellos en este momento decisivo de la historia que dio forma a la civilización occidental.\r\n"
 						+ "\r\n" + " \r\n" + "\r\n" + "\r\n"
@@ -79,13 +80,13 @@ public class InitData {
 				"https://i.ibb.co/yVW8KzG/Assassins-Creed-Odyssey1.webp",
 				"https://i.ibb.co/x3HC59Z/Assassins-Creed-Odyssey2.jpg",
 				"https://i.ibb.co/7bFXqvP/Assassins-Creed-Odyssey3.webp",
-				"http://tribecareview.es/wp-content/uploads/2018/11/ac-odyssey-1024x575.jpg", 114.99, 75, true, fecha,
+				"http://tribecareview.es/wp-content/uploads/2018/11/ac-odyssey-1024x575.jpg", 114.99, 75, true, fechaD,
 				categoriaRepository.findFirstByNombre("Acción"), fecha);
 		Juego j6 = new Juego("UNO",
 				"azte con la colección completa de uno de los juegos más emblemáticos de todos los tiempos: UNO® Ultimate Edition contiene UNO®, UNO FLIP!™, UNO® Fenyx's Quest y cartas temáticas de Just Dance® 2017 y Rayman®, entre otras. Combina cartas por color o valor y compite contra otros jugadores. Prueba UNO FLIP!™ y ya verás lo interesante que se pone la partida. ¡Pásate al lado oscuro y descubre nuevas cartas de acción como Roba cinco y Salta a todos! Juega en la Isla Dorada y gánate el apoyo de poderosas deidades en el nuevo UNO® Fenyx's Quest, un nuevo modo de juego cargado de acción con los personajes de Immortals Fenyx Rising™. ¡Dale vidilla al juego con los mazos temáticos adicionales y los contenidos descargables, y exprime al máximo tus partidas de UNO®!",
 				"ULTIMATE EDITION", "https://i.ibb.co/5G5c6rW/uno.jpg", "https://i.ibb.co/7SppG24/uno1.webp",
 				"https://i.ibb.co/tHk8Hr5/uno2.webp", "https://i.ibb.co/kxm7rb6/uno3.webp",
-				"https://i.ibb.co/566msFn/uno4.webp", 19.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Casual"), fecha);
+				"https://i.ibb.co/566msFn/uno4.webp", 19.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Casual"), fecha);
 
 		Juego j7 = new Juego("Immortals Fenyx Rising", "ERES LA ÚLTIMA ESPERANZA DE LOS DIOSES\r\n" + "\r\n"
 				+ "Ponte en la piel de Fenyx y salva a los dioses griegos de una tenebrosa maldición. Enfréntate a bestias mitológicas, domina los poderes legendarios de los dioses y derrota a Tifón, el titán más terrorífico de la mitología griega, en una lucha épica que pasará a la historia.\r\n"
@@ -98,7 +99,7 @@ public class InitData {
 				"STANDARD EDITION", "https://i.ibb.co/GRsBfbx/Immortals-Fenyx.jpg",
 				"https://i.ibb.co/3p241X2/Immortals-Fenyx1.jpg", "https://i.ibb.co/3cn6BwT/Immortals-Fenyx2.webp",
 				"https://i.ibb.co/J7LmMwP/Immortals-Fenyx3.webp", "https://i.ibb.co/K6YZ72G/Immortals-Fenyx4.jpg",
-				59.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Acción"), fecha);
+				59.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Acción"), fecha);
 
 		Juego j8 = new Juego("Riders Republic",
 				"¡Reserva ya para conseguir el pack Conejito! Incluye un atuendo de conejito personalizado y un gráfico para la tabla de snow.\r\n"
@@ -114,7 +115,7 @@ public class InitData {
 				"ULTIMATE EDITION", "https://i.ibb.co/txHCVb4/Riders-Republic.webp",
 				"https://i.ibb.co/T1KpCb6/Riders-Republic1.jpg", "https://i.ibb.co/dKZM6dF/Riders-Republic2.jpg",
 				"https://i.ibb.co/zxFmzgF/Riders-Republic3.jpg", "https://i.ibb.co/K5TmgCn/Riders-Republic4.jpg",
-				119.99, 8, true, fecha, categoriaRepository.findFirstByNombre("Deporte"), fecha);
+				119.99, 8, true, fechaD, categoriaRepository.findFirstByNombre("Deporte"), fecha);
 
 		Juego j9 = new Juego("Monopoly Plus", "Un juego de mesa que está vivo\r\n"
 				+ "Una auténtica ciudad en 3D en el centro del tablero vive y evoluciona a medida que juegas. Posees un mundo en miniatura en el que cada barrio tiene su propia identidad y características. Sus amistosos habitantes interactuarán con tu progreso por todo el juego, celebrando tus logros, añadiendo toda una nueva dimensión a tu experiencia de juego. Siente que posees algo especial, y admira cómo se expande tu imperio ante tus propios ojos.\r\n"
@@ -122,7 +123,7 @@ public class InitData {
 				+ "Puedes cambiar las reglas y adaptarlas a tu estilo de juego. Prueba el famoso modo Speed Die, para que el juego sea más divertido, o selecciona una de las seis reglas de la casa elegidas por miembros de la comunidad de Monopoly de todo el mundo.",
 				"STANDARD EDITION", "https://i.ibb.co/GtgrFnY/Monopoly.webp", "https://i.ibb.co/4dzk6N0/Monopoly1.jpg",
 				"https://i.ibb.co/hBZyL7W/Monopoly2.jpg", "https://i.ibb.co/Yth1Hmn/Monopoly3.jpg",
-				"https://i.ibb.co/xjWv8n0/Monopoly4.jpg", 14.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Estrategia"), fecha);
+				"https://i.ibb.co/xjWv8n0/Monopoly4.jpg", 14.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Estrategia"), fecha);
 		Juego j10 = new Juego("Far Cry 6",
 				"Te damos la bienvenida a Yara, un paraíso tropical que se ha detenido en el tiempo. Como dictador de Yara, Anton Castillo está decidido a devolver a su nación la antigua gloria perdida por cualquier medio, y su hijo Diego sigue sus sangrientos pasos. Su despiadada opresión ha prendido la llama de la revolución.\r\n"
 						+ "\r\n" + "LUCHA POR LA LIBERTAD\r\n"
@@ -140,7 +141,7 @@ public class InitData {
 				"ULTIMATE EDITION", "https://i.ibb.co/Yk49Ry5/Far-Cry-Six.jpg",
 				"https://i.ibb.co/NLpcvxZ/Far-Cry-Six1.png", "https://i.ibb.co/bWFvrfV/Far-Cry-Six2.png",
 				"https://i.ibb.co/YyHp6KX/Far-Cry-Six3.png", "https://i.ibb.co/x5bGNsV/Far-Cry-Six4.jpg", 119.99, 8,
-				true, fecha, categoriaRepository.findFirstByNombre("Shooter"), fecha);
+				true, fechaD, categoriaRepository.findFirstByNombre("Shooter"), fecha);
 		Juego j11 = new Juego("South Park The Stick of Truth",
 				"Desde los peligrosísimos campos de batalla del patio de recreo de los de cuarto curso, un joven héroe se alzará para cumplir su destino como salvador de South Park. De los creadores de South Park, Trey Parker y Matt Stone, llega una misión épica para convertirte en… un tío guay. Presentamos South Park™: La Vara de la Verdad.\r\n"
 						+ "\r\n"
@@ -150,14 +151,14 @@ public class InitData {
 				"STANDARD", "https://i.ibb.co/ZMWmNG5/South-Park-Stick.webp",
 				"https://i.ibb.co/rfc0cmf/South-Park-Stick1.webp", "https://i.ibb.co/zHpmQn7/South-Park-Stick2.webp",
 				"https://i.ibb.co/s5ZQPRD/South-Park-Stick3.webp", "https://i.ibb.co/fnGzjcm/South-Park-Stick4.jpg",
-				29.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Aventura"), fecha);
+				29.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Aventura"), fecha);
 		Juego j12 = new Juego("Eagle Flight",
 				"¡Eagle Flight, desarrollado solo para realidad virtual, te lleva a los cielos de París para que vivas como nunca la libertad de volar!\r\n"
 						+ "Cincuenta años después de que los humanos desaparecieran de la faz de la Tierra, la fauna y la flora se adueñaron de sus ciudades y convirtieron París en un asombroso parque urbano. Como águila, planearás entre monumentos emblemáticos, desde la torre Eiffel hasta la catedral de Notre Dame, y te adentrarás en callejones estrechos para luchar contra rivales y proteger tu territorio. ¡Eagle Flight te da libertad absoluta para explorar París a vista de pájaro!\r\n"
 						+ "¡Siente cómo se te dispara la adrenalina con el multijugador para hasta seis jugadores! Usa tus habilidades de vuelo para llevar a tu equipo a la victoria en dos modos multijugador y libra frenéticas batallas aéreas. ¡Tanto si siempre has deseado conocer París a vista de pájaro como si quieres sentir la emoción de cazar como un ave de rapiña, Eagle Flight te permitirá hacer realidad tus sueños!",
 				"STANDARD", "https://i.ibb.co/4SVFRqZ/Eagle-Flight.jpg", "https://i.ibb.co/yYXjshP/Eagle-Flight1.jpg",
 				"https://i.ibb.co/dmmL0Yj/Eagle-Flight2.jpg", "https://i.ibb.co/Rj9hFJV/Eagle-Flight3.jpg",
-				"https://i.ibb.co/tJFW0xZ/Eagle-Flight4.jpg", 19.99, 0, true, fecha, categoriaRepository.findFirstByNombre("Simulación"), fecha);
+				"https://i.ibb.co/tJFW0xZ/Eagle-Flight4.jpg", 19.99, 0, true, fechaD, categoriaRepository.findFirstByNombre("Simulación"), fecha);
 		repository.save(j1);
 		repository.save(j2);
 		repository.save(j3);

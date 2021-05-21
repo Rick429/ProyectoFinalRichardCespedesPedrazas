@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.proyectorichardcespedespedrazas.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import com.salesianostriana.dam.proyectorichardcespedespedrazas.model.Categoria;
 import com.salesianostriana.dam.proyectorichardcespedespedrazas.model.Juego;
 import com.salesianostriana.dam.proyectorichardcespedespedrazas.service.base.CategoriaService;
 import com.salesianostriana.dam.proyectorichardcespedespedrazas.service.base.JuegoService;
-
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -29,19 +29,21 @@ public class JuegoController {
 	public String index(Model model,
 		@RequestParam("q") Optional<String> consulta) {
 			
-			List<Juego> juegos;
-			
+			List<Juego> juegos = new ArrayList<>();
 			if (consulta.isEmpty()) {
-				juegos = juegoServicio.findAll();
+				for (Juego juego : juegoServicio.findAll()) {
+					if(juego.isDisponibilidad()) {
+						juegos.add(juego);
+					}
+				}
+				model.addAttribute("juegos", juegos);
+				
 			} else {
 				juegos = juegoServicio.buscarPorNombre(consulta.get());
 			}
-
+			model.addAttribute("carruseles", juegoServicio.juegosNuevos());
 			model.addAttribute("juegos", juegos);					
 
-			//return "index";
-		//model.addAttribute("juegos", juegoServicio.findAll());
-		//model.addAttribute("portada", juegoServicio.tresPorFecha();
 		return "index";
 	}
 	
@@ -60,15 +62,33 @@ public class JuegoController {
 		
 		return "juego";
 	}
-
 	
-	@GetMapping("{/Juego/Categoria/{id}}")
+	@GetMapping("/Juego/Categoria/{id}")
 	public String todosLosJuegos(Model model, 
 			@PathVariable("id") Long id) {
 		model.addAttribute("juegos", juegoServicio.todosLosJuegosDeUnaCategoria(id));					
 		return "index";
 	}
+	@GetMapping("/Juego/Novedad")
+	public String todosLosJuegos(Model model) {
 
+		model.addAttribute("juegos", juegoServicio.juegosNuevos());					
+	
+		return "index";
+	}
+	
+	@GetMapping("/Juego/Oferta")
+	public String todosLosJuegosConDescuento(Model model){
+		List<Juego> juegos = new ArrayList<>();	
+		int cero = 0;
+			for (Juego juego : juegoServicio.findAll()) {
+				if(juego.getDescuento()>cero) {
+					juegos.add(juego);
+				}
+			}
+			model.addAttribute("juegos", juegos);					
+		return "index";
+	}
 
 	@PostMapping("/submit/{id}")
 	public String procesaFormulario(@ModelAttribute("juego") Juego juego) {
@@ -85,36 +105,23 @@ public class JuegoController {
 	@GetMapping("/editar/{id}")
 	public String editar(@PathVariable("id") Long juegoId, Model model) {
 		Juego j = juegoServicio.findById(juegoId);
-		model.addAttribute(j);
-
-		
+		model.addAttribute(j);	
 		//String[] categorias = new String[] { "Acción", "Aventura", "FPS", "Deporte", "Casual", "Estrategia", "Shooter" };
 		//model.addAttribute("categorias", categoriaServicio);
 
 		return "formulario";
 	}
 	
-//	@ModelAttribute("Juego")
-//	public List<Juego> juegos(){
-//		return juegoServicio.findAll();
-//	}
+	@ModelAttribute("Juego")
+	public List<Juego> juegos(){
+	
+		return juegoServicio.findAll();
+	}
 	@ModelAttribute("categorias")
 	public List<Categoria> categorias(){
 		return categoriaServicio.findAll();
 	}
 
 	
-	/*@ModelAttribute("categoria_juego")
-	public List<String> juegos2(){
-		return List.of("Fantasia", "Acción", "Aventura");
-	}
-	
-	<label>Tipo de alumno<label/>
-	<select th:field= "*{tipo}">
-	<option value ="">---</option>
-	<option th:each="tipo : ${tipo_alumno}"
-	th:value="${tipo} th:field="*texto">
-	
-	*/
 
 }

@@ -1,8 +1,6 @@
 package com.salesianostriana.dam.proyectorichardcespedespedrazas.model;
 
 import java.time.LocalDate;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +30,7 @@ public class Juego {
 	private boolean disponibilidad;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fecha;
-	@ManyToOne//(cascade = {CascadeType.ALL})
+	@ManyToOne
 	private Categoria categoria;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaAlta;
