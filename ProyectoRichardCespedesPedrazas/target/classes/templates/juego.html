@@ -43,6 +43,9 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/}">Novedades</a>
           </li>
+           <li th:classappend="${#httpServletRequest.getRequestURI() == '/Juego/disp' ? 'nav-item active':''}">
+            <a class="nav-link" th:href="@{/Juego/disp}">No disponible</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" th:href="@{/Form}">Añadir</a>
           </li> 

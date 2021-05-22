@@ -12,8 +12,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
- 	
-    
 </head>
   <header>
     <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg  ">
@@ -45,6 +43,9 @@
           <li th:classappend="${#httpServletRequest.getRequestURI() == '/Juego/Novedad' ? 'nav-item active':''}">
             <a class="nav-link" th:href="@{/Juego/Novedad}">Novedades</a>
           </li>
+          <li th:classappend="${#httpServletRequest.getRequestURI() == '/Juego/disp' ? 'nav-item active':''}">
+            <a class="nav-link" th:href="@{/Juego/disp}">No disponible</a>
+          </li>
           <li th:classappend="${#httpServletRequest.getRequestURI() == '/Form' ? 'nav-item active':''}">
             <a class="nav-link" th:href="@{/Form}">Añadir</a>
           </li> 
@@ -65,7 +66,7 @@
     <aside class="row">
       <div class="col-12 col-lg-12" data-aos="flip-right">
         <div id="demo" class="carousel slide my-5" data-ride="carousel">
-        
+        <!--Muestra el carrusel de imagenes de los juegos nuevos-->
      <ul class="carousel-indicators">
       <th:block th:each="carrusel, iterstat : ${carruseles}"> 
         <li data-target="#demo" th:attr="data-slide-to=${iterstat.index}" th:class="${iterstat.index}== 0  ? 'active':''"></li>
@@ -74,8 +75,8 @@
 
 	<div class="carousel-inner">
     <div th:each="carrusel, iterstat : ${carruseles}" th:class="${iterstat.index}== 0  ? 'carousel-item active':'carousel-item'">
-      <img th:src="${not (#strings.isEmpty(carrusel.imagen5))} ? ${carrusel.imagen5} :
-       'https://compass-ssl.xbox.com/assets/d7/29/d7299dda-c153-4b60-9040-a6266b22ffd6.jpg?n=Assassins-Creed-Valhalla_GLP-Page-Hero-0_NCSA_1083x609_02.jpg'" width="100%" alt="novedad1">
+     <a th:href="@{/Juego/{id}(id=${carrusel.id})}"><img  th:src="${not (#strings.isEmpty(carrusel.imagen5))} ? ${carrusel.imagen5} :
+       'https://compass-ssl.xbox.com/assets/d7/29/d7299dda-c153-4b60-9040-a6266b22ffd6.jpg?n=Assassins-Creed-Valhalla_GLP-Page-Hero-0_NCSA_1083x609_02.jpg'" width="100%" alt="novedad1"> </a>
     </div>
 
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -89,6 +90,7 @@
 </div>
 </aside>
    <div class="row">
+   <!-- Muestra la portada de un juego el nombre, la descripción y el precio-->
     <div th:each="juego : ${juegos}" class="col-12 col-lg-3 my-3" data-aos="fade-up">
       <div class="card shadow-sm separador2">
        <img th:src="${not (#strings.isEmpty(juego.imagen1))} 

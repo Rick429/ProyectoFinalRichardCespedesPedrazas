@@ -43,6 +43,9 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/}">Novedades</a>
           </li>
+           <li th:classappend="${#httpServletRequest.getRequestURI() == '/Juego/disp' ? 'nav-item active':''}">
+            <a class="nav-link" th:href="@{/Juego/disp}">No disponible</a>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" th:href="@{/Form}">Añadir</a>
           </li> 
@@ -94,29 +97,39 @@
                    </div>
                    <div class="form-group col-lg-10">
                     <label for="imagen1">URL imagen portada</label> 
-                    <input th:field="*{imagen1}" id="imagen1" name="imagen1" type="text" placeholder="url" class="form-control">
+                    <input th:field="*{imagen1}" id="imagen1" name="imagen1" type="text" placeholder="https://..." pattern="https://.*" class="form-control" required>
+                   	<div class="valid-feedback">correcto</div>
+      				<div class="invalid-feedback">Tienes que introducir un enlace este campo</div>
                    </div>
                   <div class="form-group col-lg-10">
                    <label for="imagen2">URL imagen 1</label>
-                   <input th:field="*{imagen2}" id="imagen2" name="imagen2" type="text" placeholder="url" class="form-control">
+                   <input th:field="*{imagen2}" id="imagen2" name="imagen2" type="text" placeholder="https://..." pattern="https://.*" class="form-control" required>
+                   <div class="valid-feedback">correcto</div>
+      			   <div class="invalid-feedback">Tienes que introducir un enlace este campo</div>
                   </div>
                   <div class="form-group col-lg-10">
                    <label for="imagen3">URL imagen 2</label>
-                   <input th:field="*{imagen3}" id="imagen3" name="imagen3" type="text" placeholder="url" class="form-control">
+                   <input th:field="*{imagen3}" id="imagen3" name="imagen3" type="text" placeholder="https://..." pattern="https://.*" class="form-control" required>
+                   <div class="valid-feedback">correcto</div>
+      			   <div class="invalid-feedback">Tienes que introducir un enlace este campo</div>
                   </div>
                   <div class="form-group col-lg-10">
                    <label for="imagen4">URL imagen 3</label>
-                   <input th:field="*{imagen4}" id="imagen4" name="imagen4" type="text" placeholder="url" class="form-control">
+                   <input th:field="*{imagen4}" id="imagen4" name="imagen4" type="text" placeholder="https://..." pattern="https://.*" class="form-control" required>
+                   <div class="valid-feedback">correcto</div>
+      			   <div class="invalid-feedback">Tienes que introducir un enlace este campo</div>
                   </div>
                   <div class="form-group col-lg-10">
                    <label for="imagen5">URL imagen 4</label>
-                   <input th:field="*{imagen5}" id="imagen5" name="imagen5" type="text" placeholder="Imagen 5" class="form-control">
+                   <input th:field="*{imagen5}" id="imagen5" name="imagen5" type="text" placeholder="https://..." pattern="https://.*" class="form-control" required>
+                   <div class="valid-feedback">correcto</div>
+      			   <div class="invalid-feedback">Tienes que introducir un enlace este campo</div>
                   </div>                    
                   <div class="form-group col-lg-10">
                    <label for="precio">Precio</label>
-                   <input th:field="*{precio}" id="Precio" name="Precio" type="text" placeholder="0.0" class="form-control" required>
+                   <input th:field="*{precio}" id="Precio" name="Precio" type="text" placeholder="0.0" class="form-control" pattern='[0-9]+(\.[0-9][0-9]?)?' required>
                    <div class="valid-feedback">correcto</div>
-      			   <div class="invalid-feedback">Tienes que rellenar este campo</div>  
+      			   <div class="invalid-feedback">Tienes que introducir números en este campo</div>  
                   </div>
                   <div class="form-group col-lg-10">
                    <label for="descuento">Descuento</label>

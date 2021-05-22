@@ -19,6 +19,12 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+/**
+ * Clase JuegoController
+ * 
+ * @author RichardCespedes
+ *
+ */
 public class JuegoController {
 
 	private final JuegoService juegoServicio;
@@ -67,6 +73,20 @@ public class JuegoController {
 	public String todosLosJuegos(Model model, 
 			@PathVariable("id") Long id) {
 		model.addAttribute("juegos", juegoServicio.todosLosJuegosDeUnaCategoria(id));					
+		return "index";
+	}
+	@GetMapping("/Juego/disp")
+	public String todosLosJuegosNoDisponibles(Model model) {
+		List<Juego> juegos = new ArrayList<>();
+
+			for (Juego juego : juegoServicio.findAll()) {
+				if(!juego.isDisponibilidad()) {
+					juegos.add(juego);
+			
+			}
+			model.addAttribute("juegos", juegos);
+			
+		}			
 		return "index";
 	}
 	@GetMapping("/Juego/Novedad")
